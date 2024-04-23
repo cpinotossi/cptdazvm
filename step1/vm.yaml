@@ -1,0 +1,14 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - nginx
+  - nodejs
+  - npm
+write_files:
+  - owner: chpinoto:chpinoto
+    path: /home/chpinoto/test1.txt
+    defer: true
+    content: |
+      Hello World
+runcmd:
+  - echo "this has been written via cloud-init" + $(date) >> /home/chpinoto/test2.txt
